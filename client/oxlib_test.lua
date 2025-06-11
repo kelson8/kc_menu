@@ -133,6 +133,39 @@ local playerZ = Truncate(playerCoords.z, 3)
 
 -- local input = lib.inputDialog('Basic dialog', {'First row', 'Second row'})
 
+-- Default button to cancel progress bar is 'X'
+function progressBar()
+    if lib.progressBar({
+        duration = 5000,
+        label = 'Progress Bar',
+        -- Cannot trigger if dead
+        useWhileDead = false,
+        canCancel = true,
+        -- Disable these items
+        disable = {
+
+            -- Disallow using while in a vehicle
+            car = true,
+            -- Disallow while moving
+            move = true,
+            sprint = true,
+        },
+        anim = {
+            dict = 'mp_player_intdrink',
+            clip = 'loop_bottle',
+        },
+        prop = {
+            model = 'prop_ld_flow_bottle',
+            pos = vec3(0.03, 0.03, 0.02),
+            rot = vec3(0.0, 0.0, -1.5),
+        },
+    }) then
+        -- print("Done")
+    else
+        -- print("Cancelled")
+    end
+end
+
 lib.registerContext({
     id = 'vehicle_menu',
     title = 'Vehicle',
@@ -233,10 +266,14 @@ lib.registerContext({
 
 
 
+
+-- Moved to menus/new_menu.lua
 -- RegisterKeyMapping("openmenu", "Open Menu", "keyboard", "F1")
 -- I could possibly use this for an admin menu or something
-RegisterKeyMapping("openmenu", "Open Menu", "keyboard", "F3")
--- Open the menu with the command.
-RegisterCommand("openmenu", function()
-    lib.showContext('main_menu')
-end, false)
+-- RegisterKeyMapping("openmenu", "Open Menu", "keyboard", "F3")
+-- -- Open the menu with the command.
+-- RegisterCommand("openmenu", function()
+--     lib.showContext('main_menu')
+-- end, false)
+
+RegisterCommand('progressbar', progressBar, false)

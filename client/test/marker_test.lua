@@ -28,9 +28,13 @@
 -- This is neat, I can easily create markers with ox_lib.
 -- So I could setup teleport markers much easier then what I was trying to do.
 
+-- Police stations
+
 local policeRooftopPos = vec3(447.1, -982.01, 43.69)
 local policeRooftopMarkerPos = vec3(440.6, -987.01, 42.90)
 local policeGroundPos = vec3(428.5, -1021.8, 28.8)
+
+
 
 local center = vec3(430.452759, -1026.108032, 27.846140)
 local uiText = "Press [E] to get notified"
@@ -69,7 +73,9 @@ function point:nearby()
 
 		if IsControlJustPressed(0, 51) then
 			local player = GetPlayerPed(-1)
-			SetEntityCoords(player, policeRooftopPos.x, policeRooftopPos.y, policeRooftopPos.z,
+			-- SetEntityCoords(player, policeRooftopPos.x, policeRooftopPos.y, policeRooftopPos.z,
+			SetEntityCoords(player, Locations.policeRooftopPos.x, Locations.policeRooftopPos.y, Locations.policeRooftopPos.z,
+
 		false, false, false, false)
 			lib.notify({
 				-- description = "Hello, World!"
@@ -95,7 +101,8 @@ function rooftopPoint:nearby()
 
 		if IsControlJustPressed(0, 51) then
 			local player = GetPlayerPed(-1)
-			SetEntityCoords(player, policeGroundPos.x, policeGroundPos.y, policeGroundPos.z,
+			-- SetEntityCoords(player, policeGroundPos.x, policeGroundPos.y, policeGroundPos.z,
+			SetEntityCoords(player, Locations.policeGroundPos.x, Locations.policeGroundPos.y, Locations.policeGroundPos.z,
 		false, false, false, false)
 			lib.notify({
 				description = "Teleported to police station ground!"

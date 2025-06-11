@@ -9,18 +9,21 @@ dependencies {'ox_lib'}
 
 shared_scripts {
     '@ox_lib/init.lua',
+    'config.lua'
 }
 
 -- Oxlib testing
 
 client_scripts {
+    -- Locations
     'client/teleport_locations.lua',
+    'client/test/marker_locations.lua',
+
     'client/enums.lua',
 
     'client/functions.lua',
     'client/commands/test_commands.lua',
     'client/oxlib_command_test.lua',
-
 
     -- New tests
 
@@ -29,6 +32,17 @@ client_scripts {
 
     -- New menu test in other file
     'client/menus/test_menu.lua',
+
+    -- New menu test using menu instead of context menu
+
+    'client/menus/camera_menu.lua',
+    'client/menus/player_menu.lua',
+    'client/menus/music_menu.lua',
+
+    'client/menus/vehicle_menu.lua',
+
+    'client/menus/new_menu.lua',
+
 
     -- Most menus are here.
     'client/oxlib_test.lua',

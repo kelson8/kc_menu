@@ -62,9 +62,10 @@ function Music.Play(musicEvent)
 end
 
 function Music.PlayArenaWarTheme()
-    if PrepareMusicEvent("AW_LOBBY_MUSIC_START") then
-        TriggerMusicEvent("AW_LOBBY_MUSIC_START")
-    end
+    -- if PrepareMusicEvent("AW_LOBBY_MUSIC_START") then
+    PrepareMusicEvent("AW_LOBBY_MUSIC_START")
+    TriggerMusicEvent("AW_LOBBY_MUSIC_START")
+    -- end
 end
 
 -- This seems to stop the music.
@@ -75,6 +76,133 @@ end
 ------------
 --- Vehicle functions
 ------------
+
+-- Copied from car_test.lua in kc_test.
+function Vehicle.UpgradeMax()
+    local player = PlayerPedId()
+    local currentVeh = GetVehiclePedIsIn(player, false)
+
+    -- Should the vehicle be repaired?
+    local repairVehicle = true
+
+    -- If the spoiler and a bunch of other mods will be applied
+    local extraVehicleMods = true
+
+    -- If the livery will be upgraded
+    local upgradeLivery = false
+
+
+    -- if currentVeh ~= 0 or currentVeh ~= nil then
+    if DoesEntityExist(currentVeh) then
+        -- First, repair the vehicle
+        if repairVehicle then
+            SetVehicleFixed(currentVeh)
+            SetVehicleBodyHealth(currentVeh, 1000.0)
+            SetVehicleEngineHealth(currentVeh, 1000.0)
+            SetVehiclePetrolTankHealth(currentVeh, 1000.0)
+        end
+
+        -- Not sure if this is needed now.
+        -- if IsThisModelACar(currentVeh) then
+        --     for i = 1, 3 do
+        --         SetVehicleWheelHealth(currentVeh, i, 1000)
+        --     end
+        -- end
+
+        -- TODO Move these out of this command, possibly up top of this file, I could reuse them in another file.
+        -- Max vehicle upgrades, at least the essential ones.
+        -- local maxEngine = GetNumVehicleMods(vehicle, 11) - 1
+        local maxArmor = GetNumVehicleMods(currentVeh, eVehicleModType.VMT_ARMOUR) - 1
+        local maxEngine = GetNumVehicleMods(currentVeh, eVehicleModType.VMT_ENGINE) - 1
+        local maxBrakes = GetNumVehicleMods(currentVeh, eVehicleModType.VMT_BRAKES) - 1
+        local maxTransmission = GetNumVehicleMods(currentVeh, eVehicleModType.VMT_GEARBOX) - 1
+
+        -- Here are some extra vehicle mods
+        local maxSpoiler = GetNumVehicleMods(currentVeh, eVehicleModType.VMT_SPOILER) - 1
+        local maxFrontBumper = GetNumVehicleMods(currentVeh, eVehicleModType.VMT_BUMPER_F) - 1
+        local maxRearBumper = GetNumVehicleMods(currentVeh, eVehicleModType.VMT_BUMPER_R) - 1
+
+
+        local maxExhaust = GetNumVehicleMods(currentVeh, eVehicleModType.VMT_EXHAUST) - 1
+        local maxGrill = GetNumVehicleMods(currentVeh, eVehicleModType.VMT_GRILL) - 1
+        local maxRoof = GetNumVehicleMods(currentVeh, eVehicleModType.VMT_ROOF) - 1
+        local maxSkirt = GetNumVehicleMods(currentVeh, eVehicleModType.VMT_SKIRT) - 1
+
+        -- local maxLivery = GetVehicleLiveryCount(currentVeh)
+        -- https://forum.cfx.re/t/setvehiclelivery-not-working-even-when-setting-setvehiclemodkit-to-0/1584813/2
+        local maxLivery = GetNumVehicleMods(currentVeh, eVehicleModType.VMT_LIVERY_MOD) - 1
+        -- print("Max livery: " .. maxLivery)
+
+        -- Vehicle mods
+        -- Armor
+        SetVehicleMod(currentVeh, eVehicleModType.VMT_ARMOUR, maxArmor, false)
+
+        -- Engine
+        SetVehicleMod(currentVeh, eVehicleModType.VMT_ENGINE, maxEngine, false)
+
+        -- Brakes
+        SetVehicleMod(currentVeh, eVehicleModType.VMT_BRAKES, maxBrakes, false)
+
+        -- Transmission
+        SetVehicleMod(currentVeh, eVehicleModType.VMT_GEARBOX, maxTransmission, false)
+
+        -- Extra mods
+        if extraVehicleMods then
+            -- Spoiler
+            SetVehicleMod(currentVeh, eVehicleModType.VMT_SPOILER, maxSpoiler, false)
+
+            -- Rear bumper
+            SetVehicleMod(currentVeh, eVehicleModType.VMT_BUMPER_F, maxFrontBumper, false)
+
+            -- Front bumper
+            SetVehicleMod(currentVeh, eVehicleModType.VMT_BUMPER_R, maxRearBumper, false)
+
+            -- Exhaust
+            SetVehicleMod(currentVeh, eVehicleModType.VMT_EXHAUST, maxExhaust, false)
+
+            -- Grill
+            SetVehicleMod(currentVeh, eVehicleModType.VMT_GRILL, maxGrill, false)
+
+            -- Roof
+            SetVehicleMod(currentVeh, eVehicleModType.VMT_ROOF, maxRoof, false)
+
+            -- Skirt
+            SetVehicleMod(currentVeh, eVehicleModType.VMT_SKIRT, maxSkirt, false)
+
+            -- Xenon Lights
+            -- TODO Configure this one.
+            -- SetVehicleMod(currentVeh, eVehicleModType.VMT_XENON_LIGHTS, 1, false)
+        end
+
+
+        -- This works! Now requires to be active above.
+        if upgradeLivery then
+            SetVehicleMod(currentVeh, eVehicleModType.VMT_LIVERY_MOD, maxLivery, false)
+        end
+
+
+        -- if maxLivery ~= 0 then
+        --     SetVehicleLivery(currentVeh, maxLivery)
+        -- end
+        --
+
+        -- Turbo and bullet proof tires
+        ToggleVehicleMod(currentVeh, eVehicleModType.VMT_TURBO, true)
+        SetVehicleTyresCanBurst(currentVeh, false)
+
+        exports.kc_util:Notify("Current vehicle ~b~upgraded~w~!")
+    else
+        lib.notify(
+        {
+            title = "Vehicle required for action!",
+            description = 'You are not in a vehicle',
+            type = 'error'
+        }
+    )
+    end
+end
+
+--
 
 -- Copied from vehicle_functions.lua in kc_menu.
 
@@ -96,7 +224,7 @@ function Vehicle.Create(vehicleName, x, y, z, heading, clearArea)
         print("Model doesn't exist")
         return
     end
-    
+
     -- if not IsModelAVehicle(vehicleName) then
     if not IsModelAVehicle(vehicleHash) then
         return
@@ -106,9 +234,7 @@ function Vehicle.Create(vehicleName, x, y, z, heading, clearArea)
 
     -- First, check if the player is in a vehicle
     if not IsPedInAnyVehicle(player, false) then
-
-    
-    -- Remove the old vehicle
+        -- Remove the old vehicle
         if DoesEntityExist(vehicle) then
             SetVehicleAsNoLongerNeeded(vehicle)
             DeleteVehicle(vehicle)
@@ -161,15 +287,14 @@ function Vehicle.Create(vehicleName, x, y, z, heading, clearArea)
         -- setVehicleMaxUpgrades(vehicleNew)
 
         SetModelAsNoLongerNeeded(vehicleHash)
-    -- else
+        -- else
         -- if DoesEntityExist(vehicle) then
-            -- SetVehicleAsNoLongerNeeded(vehicle)
-            -- DeleteVehicle(vehicle)
+        -- SetVehicleAsNoLongerNeeded(vehicle)
+        -- DeleteVehicle(vehicle)
         -- end
 
         -- vehicle = 0
-    -- end
-
+        -- end
     else
         Text.Notify("Exit your vehicle first!")
     end
