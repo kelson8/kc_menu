@@ -92,25 +92,19 @@ lib.registerMenu({
     elseif args[1] == "camera_options" then
         CreateCameraMenu()
         lib.showMenu("camera_options")
-
-
-
-        -- This works
-        -- elseif args[1] == "camera_mode_check" then
-
-        --     local cameraMode = GetFollowPedCamViewMode()
-        --         lib.notify({
-        -- 			description = "Camera mode: " .. cameraMode
-        -- 		})
     end
 
 
     -- print(selected, scrollIndex, args)
 end)
 
--- RegisterKeyMapping("testmenu", "Open Menu", "keyboard", "F3")
+-- TODO Rename this later
+RegisterKeyMapping("testmenu", "Open Menu", "keyboard", Config.KeyBind)
 -- -- Open the menu with the command.
 RegisterCommand('testmenu', function()
-    -- lib.showMenu('some_menu_id')
-    lib.showMenu('kcnet_menu')
+    if not lib.getOpenMenu() then
+        lib.showMenu('kcnet_menu')
+    else
+        lib.hideMenu(false)
+    end
 end, false)
