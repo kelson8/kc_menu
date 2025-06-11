@@ -6,29 +6,18 @@ function CreateVehicleMenu()
         title = 'Vehicle Options',
         position = menuPosition,
 
+        onClose = function(keyPressed)
+            CloseMenu(false, keyPressed, 'kcnet_menu')
+        end,
+
         onSideScroll = function(selected, scrollIndex, args)
         end,
 
         onSelected = function(selected, secondary, args)
-            if not secondary then
-                -- print("Normal button")
-            else
-                if args.isCheck then
-                    -- print("Check button")
-                end
-
-                if args.isScroll then
-                    -- print("Scroll button")
-                end
-            end
-            -- print(selected, secondary, json.encode(args, {indent=true}))
         end,
 
         onCheck = function(selected, checked, args)
             -- print("Check: ", selected, checked, args)
-        end,
-
-        onClose = function(keyPressed)
         end,
 
         options = {

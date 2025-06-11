@@ -6,6 +6,10 @@ function CreateMusicMenu()
         title = 'Music Options',
         position = menuPosition,
 
+        onClose = function(keyPressed)
+            CloseMenu(false, keyPressed, 'kcnet_menu')
+        end,
+
         onSideScroll = function(selected, scrollIndex, args)
         end,
 
@@ -26,9 +30,6 @@ function CreateMusicMenu()
 
         onCheck = function(selected, checked, args)
             -- print("Check: ", selected, checked, args)
-        end,
-
-        onClose = function(keyPressed)
         end,
 
         options = {

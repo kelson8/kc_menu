@@ -39,7 +39,7 @@ lib.registerMenu({
         -- print("Check: ", selected, checked, args)
     end,
     onClose = function(keyPressed)
-        print('Menu closed')
+        -- print('Menu closed')
         if keyPressed then
             -- print(('Pressed %s to close the menu'):format(keyPressed))
         end
@@ -55,6 +55,7 @@ lib.registerMenu({
         -- {label = 'List button with args', values = {'You', 'can', 'side', 'scroll', 'this'}, args = {someValue = 3, otherValue = 'value'}},
 
         { label = 'Player Options', args = { 'player_options' } },
+        { label = 'Teleport Options', args = { 'teleport_options' } },
         { label = 'Vehicle Options', args = { 'vehicle_options' } },
         { label = 'Music Options', args = { 'music_options' } },
         { label = 'Camera Options', args = { 'camera_options' } },
@@ -71,6 +72,10 @@ lib.registerMenu({
     if args[1] == "player_options" then
         CreatePlayerMenu()
         lib.showMenu("player_options")
+
+    elseif args[1] == "teleport_options" then
+        CreateTeleportMenu()
+        lib.showMenu("teleport_options")
 
     -- TODO Set these up
     -- elseif args[1] == "teleport_options" then

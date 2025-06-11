@@ -7,6 +7,10 @@ function CreateCameraMenu()
         title = 'Camera options',
         position = Config.MenuPosition,
 
+        onClose = function(keyPressed)
+            CloseMenu(false, keyPressed, 'kcnet_menu')
+        end,
+
         onSideScroll = function(selected, scrollIndex, args)
         end,
 
@@ -27,9 +31,6 @@ function CreateCameraMenu()
 
         onCheck = function(selected, checked, args)
             -- print("Check: ", selected, checked, args)
-        end,
-
-        onClose = function(keyPressed)
         end,
 
         options = {

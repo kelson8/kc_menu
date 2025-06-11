@@ -191,6 +191,13 @@ function Vehicle.UpgradeMax()
         SetVehicleTyresCanBurst(currentVeh, false)
 
         exports.kc_util:Notify("Current vehicle ~b~upgraded~w~!")
+        lib.notify(
+        {
+            title = "Current vehicle upgraded!",
+            description = 'Added all upgrades to your vehicle.',
+            type = 'success'
+        }
+    )
     else
         lib.notify(
         {

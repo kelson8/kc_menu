@@ -18,5 +18,9 @@ Link to my other test projects:
 * Main Scripts repo https://github.com/kelson8/fivem-scripts
 * My other menu (Uses MenuV): https://github.com/kelson8/fivem-scripts/tree/main/kc_menu
 
+# Credits
+BerkieBb and bMenu on GitHub for some teleport functions:
+* https://github.com/BerkieBb/bMenu
+
 ### License
 This project is Licensed under the GPLV3 license

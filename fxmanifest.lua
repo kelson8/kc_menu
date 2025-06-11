@@ -9,7 +9,8 @@ dependencies {'ox_lib'}
 
 shared_scripts {
     '@ox_lib/init.lua',
-    'config.lua'
+    'config.lua',
+    'config/locations.lua',
 }
 
 -- Oxlib testing
@@ -20,8 +21,12 @@ client_scripts {
     'client/test/marker_locations.lua',
 
     'client/enums.lua',
+    -- Functions
 
-    'client/functions.lua',
+    'client/functions/clothes.lua',
+    'client/functions/functions.lua',
+    'client/functions/menu.lua',
+
     'client/commands/test_commands.lua',
     'client/oxlib_command_test.lua',
 
@@ -38,6 +43,7 @@ client_scripts {
     'client/menus/camera_menu.lua',
     'client/menus/player_menu.lua',
     'client/menus/music_menu.lua',
+    'client/menus/teleport_menu.lua',
 
     'client/menus/vehicle_menu.lua',
 
@@ -48,6 +54,6 @@ client_scripts {
     'client/oxlib_test.lua',
 }
 
--- server_scripts {
-    -- 'server/oxlib_test.lua',
--- }
+server_scripts {
+    'server/functions/teleports.lua',
+}
