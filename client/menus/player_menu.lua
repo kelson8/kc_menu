@@ -1,3 +1,5 @@
+local mobileRadioChecked = false
+
 local function PlayerTogglesMenu()
     lib.registerMenu({
             id = 'player_toggles',
@@ -12,26 +14,22 @@ local function PlayerTogglesMenu()
             end,
 
             onSelected = function(selected, secondary, args)
-                if not secondary then
-                    -- print("Normal button")
-                else
-                    if args.isCheck then
-                        -- print("Check button")
-                    end
-
-                    if args.isScroll then
-                        -- print("Scroll button")
-                    end
-                end
-                -- print(selected, secondary, json.encode(args, {indent=true}))
             end,
 
             onCheck = function(selected, checked, args)
-                -- print("Check: ", selected, checked, args)
+                if args[1] == 'mobile_radio' then
+                    -- Update for use in loop
+                    mobileRadioStatus = checked
+                    -- Update checkbox status
+                    mobileRadioChecked = checked
+                end
             end,
 
             options = {
-                { label = 'Kill player', description = 'Kill yourself', args = { 'kill_player' } },
+                -- Disable this for now.
+                -- { label = 'Kill player', description = 'Kill yourself', args = { 'kill_player' } },
+
+                { label = 'Mobile radio', description = 'Turn on/off the mobile radio outside a vehicle', checked = mobileRadioChecked, args = { 'mobile_radio' } },
             },
         },
         function(selected, scrollIndex, args)
@@ -39,12 +37,17 @@ local function PlayerTogglesMenu()
 
             if args[1] == 'kill_player' then
                 SetEntityHealth(PlayerPedId(), 0.0)
+            -- Moved into checkboxes.
+            -- elseif args[1] == 'mobile_radio' then
+            --     Player.ToggleMobileRadio()
             end
         end
     )
 end
 
 -- Clothes menu
+
+
 local function CreateClothesMenu()
     local player = PlayerPedId()
 
@@ -169,7 +172,7 @@ function CreatePlayerMenu()
 end
 
 -- Does this not work in FiveM?
--- local isExplosiveAmmoActive = true
+-- local isExplosiveAmmoActive = false
 -- Citizen.CreateThread(function ()
 --     while true do
 --         Wait(0)

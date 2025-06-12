@@ -11,6 +11,7 @@ shared_scripts {
     '@ox_lib/init.lua',
     'config.lua',
     'config/locations.lua',
+    'config/doors_config.lua',
 }
 
 -- Oxlib testing
@@ -24,6 +25,7 @@ client_scripts {
     -- Functions
 
     'client/functions/clothes.lua',
+    'client/functions/doors.lua',
     'client/functions/functions.lua',
     'client/functions/menu.lua',
 
@@ -41,6 +43,7 @@ client_scripts {
     -- New menu test using menu instead of context menu
 
     'client/menus/camera_menu.lua',
+    'client/menus/lobby_menu.lua',
     'client/menus/player_menu.lua',
     'client/menus/music_menu.lua',
     'client/menus/teleport_menu.lua',
@@ -56,4 +59,7 @@ client_scripts {
 
 server_scripts {
     'server/functions/teleports.lua',
+    'server/functions/doors.lua',
+
+    'server/routing_buckets.lua',
 }

@@ -192,20 +192,20 @@ function Vehicle.UpgradeMax()
 
         exports.kc_util:Notify("Current vehicle ~b~upgraded~w~!")
         lib.notify(
-        {
-            title = "Current vehicle upgraded!",
-            description = 'Added all upgrades to your vehicle.',
-            type = 'success'
-        }
-    )
+            {
+                title = "Current vehicle upgraded!",
+                description = 'Added all upgrades to your vehicle.',
+                type = 'success'
+            }
+        )
     else
         lib.notify(
-        {
-            title = "Vehicle required for action!",
-            description = 'You are not in a vehicle',
-            type = 'error'
-        }
-    )
+            {
+                title = "Vehicle required for action!",
+                description = 'You are not in a vehicle',
+                type = 'error'
+            }
+        )
     end
 end
 
@@ -334,6 +334,41 @@ function Player.Heading()
     local playerHeading = GetEntityHeading(player)
 
     return playerHeading
+end
+
+-- Mobile radio
+
+
+-- I setup this with a flag system so it shouldn't constantly run.
+mobileRadioStatus = false
+-- The flags should only ever be toggled here.
+local mobileRadioFlag = false
+
+-- Thread with flag system to keep the mobile radio on or off with a checkbox.
+Citizen.CreateThread(function()
+    while true do
+        Wait(0)
+        if mobileRadioStatus and not mobileRadioFlag then
+            Player.ToggleMobileRadio()
+            mobileRadioFlag = true
+            lib.notify({
+                title = 'Radio Enabled',
+                description = 'Enabled Mobile radio',
+            })
+        elseif not mobileRadioStatus and mobileRadioFlag then
+            Player.ToggleMobileRadio()
+            mobileRadioFlag = false
+            lib.notify({
+                title = 'Radio Disabled',
+                description = 'Disabled Mobile radio',
+            })
+        end
+    end
+end)
+
+function Player.ToggleMobileRadio()
+    SetMobilePhoneRadioState(mobileRadioStatus)
+    SetMobileRadioEnabledDuringGameplay(mobileRadioStatus)
 end
 
 ------------

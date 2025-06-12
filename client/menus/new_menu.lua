@@ -59,9 +59,9 @@ lib.registerMenu({
         { label = 'Vehicle Options', args = { 'vehicle_options' } },
         { label = 'Music Options', args = { 'music_options' } },
         { label = 'Camera Options', args = { 'camera_options' } },
+        { label = 'Lobby Menu', args = { 'lobby_menu' } },
 
         -- TODO Set these up
-        -- { label = 'Teleport Options', args = { 'teleport_options' } },
         -- { label = 'Test Options', args = { 'test_options' } },
 
     }
@@ -78,10 +78,6 @@ lib.registerMenu({
         lib.showMenu("teleport_options")
 
     -- TODO Set these up
-    -- elseif args[1] == "teleport_options" then
-    --     CreateTeleportMenu()
-    --     lib.showMenu("teleport_options")
-
     -- elseif args[1] == "test_options" then
     --     CreateTestMenu()
     --     lib.showMenu("test_options")
@@ -97,6 +93,10 @@ lib.registerMenu({
     elseif args[1] == "camera_options" then
         CreateCameraMenu()
         lib.showMenu("camera_options")
+
+    elseif args[1] == "lobby_menu" then
+        CreateLobbyMenu()
+        lib.showMenu("lobby_menu")
     end
 
 
