@@ -8,8 +8,6 @@
 local lobbyBucket = 0
 local noPopulationBucket = 10
 
--- TODO Convert these permissions from kc_menu to oxlib_test or just keep them for now.
-
 -- https://forum.cfx.re/t/issues-with-ox-lib-notify/5227275
 
 --- Basic function to display a no permission error on the players screen.
@@ -33,8 +31,8 @@ end
 -- Set player into hub lobby
 -- TODO Add other player support to this.
 ---------
-RegisterServerEvent("oxlib_test:server:setHub")
-AddEventHandler("oxlib_test:server:setHub", function()
+RegisterServerEvent("kc_menu:server:setHub")
+AddEventHandler("kc_menu:server:setHub", function()
     if IsPlayerAceAllowed(source, "kc_menu.lobby.hub") then
         SetPlayerRoutingBucket(source, lobbyBucket)
 
@@ -54,8 +52,8 @@ end)
 -- Set player into no population lobby
 -- TODO Add other player support to this.
 ---------
-RegisterServerEvent("oxlib_test:server:setNoPopulation")
-AddEventHandler("oxlib_test:server:setNoPopulation", function()
+RegisterServerEvent("kc_menu:server:setNoPopulation")
+AddEventHandler("kc_menu:server:setNoPopulation", function()
     if IsPlayerAceAllowed(source, "kc_menu.lobby.set_no_population") then
         SetRoutingBucketPopulationEnabled(noPopulationBucket, false)
 
@@ -75,8 +73,8 @@ end)
 -- Set vehicle no population test
 -- I got this working by combining it with the other event, so it isn't in the same event.
 ---------
-RegisterServerEvent("oxlib_test:server:setVehicleNoPopulation")
-AddEventHandler("oxlib_test:server:setVehicleNoPopulation", function(vehNetId)
+RegisterServerEvent("kc_menu:server:setVehicleNoPopulation")
+AddEventHandler("kc_menu:server:setVehicleNoPopulation", function(vehNetId)
     if IsPlayerAceAllowed(source, "kc_menu.lobby.set_no_population") then
         SetRoutingBucketPopulationEnabled(noPopulationBucket, false)
 
@@ -102,8 +100,8 @@ end)
 ---------
 -- Set vehicle back to hub
 ---------
-RegisterServerEvent("oxlib_test:server:setVehicleLobby")
-AddEventHandler("oxlib_test:server:setVehicleLobby", function(vehNetId)
+RegisterServerEvent("kc_menu:server:setVehicleLobby")
+AddEventHandler("kc_menu:server:setVehicleLobby", function(vehNetId)
     if IsPlayerAceAllowed(source, "kc_menu.lobby.hub") then
         SetRoutingBucketPopulationEnabled(noPopulationBucket, false)
 
@@ -129,8 +127,8 @@ end)
 -- I got this part to work, I had to get the network ID like I was doing in lobby_test.
 -- Get current player routing bucket.
 -- TODO Make this get the vehicles network id if a player is in one.
-RegisterServerEvent("oxlib_test:server:getCurrentLobby")
-AddEventHandler("oxlib_test:server:getCurrentLobby", function()
+RegisterServerEvent("kc_menu:server:getCurrentLobby")
+AddEventHandler("kc_menu:server:getCurrentLobby", function()
     if IsPlayerAceAllowed(source, "kc_menu.lobby.get_lobby") then
         -- This requires the network of of the player.
         local netId = NetworkGetEntityFromNetworkId(source)
@@ -151,7 +149,7 @@ end)
 
 -- This works now! I'm not sure how to adapt it to my menu for vehicles I am in though.
 -- https://docs.fivem.net/docs/scripting-manual/networking/ids/
-RegisterServerEvent("oxlib_test:server:getCurrentVehicleLobby")
+RegisterServerEvent("kc_menu:server:getCurrentVehicleLobby")
 AddEventHandler("kc_menu:getCurrentVehicleLobby", function()
     -- AddEventHandler("kc_menu:getCurrentVehicleLobby", function()
     if IsPlayerAceAllowed(source, "kc_menu.lobby.get_lobby") then

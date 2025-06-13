@@ -3,7 +3,7 @@
 local locations = {}
 
 local function refreshLocations()
-    local newLocations = lib.callback.await('oxlib_test:server:getConfig', false, 'locations')
+    local newLocations = lib.callback.await('kc_menu:server:getConfig', false, 'locations')
 
     if newLocations and type(newLocations) == 'table' then
         for i = 1, #newLocations do
@@ -47,6 +47,8 @@ local function CreateSavedTeleportMenu()
         SetEntityHeading(PlayerPedId(), args.heading)
 
         -- TODO setup vehicle teleport for my system.
+        -- Hmm, cache.vehicle and cache.ped might work, I guess it is ox_lib and not custom for bMenu
+        -- https://overextended.dev/ox_lib/Modules/Cache/Client
         -- SetEntityCoords(currentVeh, args.coords.x, args.coords.y, args.coords.z, true, false, false, false)
         -- SetEntityHeading(currentVeh, args.heading)
 
@@ -100,7 +102,7 @@ function CreateTeleportMenu()
                 return
             end
 
-            local result, notification = lib.callback.await('oxlib_test:server:saveTeleportLocation', false, dialog[1])
+            local result, notification = lib.callback.await('kc_menu:server:saveTeleportLocation', false, dialog[1])
 
             lib.notify({
                 description = notification,

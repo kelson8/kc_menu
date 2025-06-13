@@ -1,5 +1,5 @@
-# kcnet_oxlib_testing
-This is just a test menu I am working on using ox_lib.
+# KCMenu
+This is a replacement for my old kc_menu which was originally using menuV, this is much easier to use for me.
 
 So far I have some player options, vehicle options and music options but not much is here.
 
@@ -11,12 +11,12 @@ Eventually, I may remove kc_menu from the main fivem scripts repo and rename thi
 Anyone is welcome to use this code, please give credit if you do.
 
 ### Links
-Link to kc_util, this is required for my tests:
+Link to kc_util, this is required for my tests (I may remove this dependency later):
 * https://github.com/kelson8/fivem-scripts/tree/main/kc_util
 
 Link to my other test projects:
 * Main Scripts repo https://github.com/kelson8/fivem-scripts
-* My other menu (Uses MenuV): https://github.com/kelson8/fivem-scripts/tree/main/kc_menu
+* My old menu (Uses MenuV): https://github.com/kelson8/fivem-scripts/tree/main/kc_menu
 
 # Credits
 BerkieBb and bMenu on GitHub for some teleport functions:

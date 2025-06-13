@@ -60,6 +60,7 @@ lib.registerMenu({
         { label = 'Music Options', args = { 'music_options' } },
         { label = 'Camera Options', args = { 'camera_options' } },
         { label = 'Lobby Menu', args = { 'lobby_menu' } },
+        { label = 'Admin Menu', args = { 'admin_menu' } },
 
         -- TODO Set these up
         -- { label = 'Test Options', args = { 'test_options' } },
@@ -97,6 +98,10 @@ lib.registerMenu({
     elseif args[1] == "lobby_menu" then
         CreateLobbyMenu()
         lib.showMenu("lobby_menu")
+
+    elseif args[1] == "admin_menu" then
+        CreateAdminMenu()
+        lib.showMenu("admin_menu")
     end
 
 

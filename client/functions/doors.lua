@@ -31,7 +31,7 @@ Citizen.CreateThread(function()
 end)
 
 
-RegisterNetEvent("oxlib_test:client:update_doors", function(doorName, lockState)
+RegisterNetEvent("kc_menu:client:update_doors", function(doorName, lockState)
     DoorSystemSetDoorState(Config.Doors[doorName].DoorHash, lockState, false, false)
 end)
 

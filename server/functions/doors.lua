@@ -57,7 +57,7 @@ RegisterCommand("door_test", function(source, args, rawCommand)
     doors[doorName].Locked = lockState
     GlobalState.doors = doors
 
-    TriggerClientEvent("oxlib_test:client:update_doors", -1, doorName, lockState)
+    TriggerClientEvent("kc_menu:client:update_doors", -1, doorName, lockState)
     if lockState == 0 then
 
             TriggerClientEvent('ox_lib:notify', source, {

@@ -52,6 +52,34 @@ function Teleports.TeleportFade(x, y, z, heading)
 end
 
 ------------
+-- Message/Notifcation functions
+------------
+
+-- Busy spinners
+
+Text.busySpinner = false
+function Text.ShowBusySpinner(message)
+    if not Text.busySpinner then
+        BeginTextCommandBusyspinnerOn("STRING")
+        AddTextComponentSubstringPlayerName(message)
+        EndTextCommandBusyspinnerOn(5)
+        Text.busySpinner = true
+    else
+        BusyspinnerOff()
+        Text.busySpinner = false
+    end
+end
+
+function Text.HideBusySpinner()
+    if Text.busySpinner then
+        BusyspinnerOff()
+    end
+end
+--
+
+
+
+------------
 --- Music functions
 ------------
 
@@ -311,6 +339,18 @@ end
 -- function Vehicle.SetColor()
 
 -- end
+
+--- TODO Move this somewhere else.
+--- Check if a vehicle exists and a player is in one.
+---@param vehicleToCheck any Vehicle to check
+---@return boolean If the vehicle exists and the player is in a vehicle.
+function DoesVehicleExist(vehicleToCheck)
+    if vehicleToCheck ~= 0 or vehicleToCheck ~= nil and IsPedInAnyVehicle(PlayerPedId(), false) then
+        return true
+    end
+
+    return false
+end
 
 --
 

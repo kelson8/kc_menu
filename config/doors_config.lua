@@ -1,7 +1,7 @@
 
 -- For some reason this was giving the error.
 -- Config = {}
--- -- "police_1", "v_ilev_ph_gendoor004", 450.1041, -985.7384, 30.8393, true, true, false
+-- "police_1", "v_ilev_ph_gendoor004", 450.1041, -985.7384, 30.8393, true, true, false
 
 -- Set the locked value to 1 to automatically lock the doors
 Config.Doors = {
@@ -27,7 +27,7 @@ Config.Doors = {
         Locked = 0,
     },
 
---     -- Casino vault doors
+    -- Casino vault doors
     ['casino_vault'] = {
         DoorHash = "casino_vault",
         ModelHash = "ch_prop_ch_vaultdoor01x",
@@ -43,6 +43,63 @@ Config.Doors = {
     },
 
     -- Casino doors
+
+    -- Exterior
+    -- I may lock these, and move the marker outside to make it a bit more like online.
+
+    -- Well these don't stay locked if the server is restarted
+    -- Door set #1
+    -- Left door
+    ['casino_exterior_door1l'] = {
+        DoorHash = "casino_exterior_door1l",
+        ModelHash = "vw_prop_vw_casino_door_02a",
+        Coordinates = vector3(927.7387, 49.6035, 81.5419),
+        Locked = 0
+    },
+
+    -- Right door
+    ['casino_exterior_door1r'] = {
+        DoorHash = "casino_exterior_door1r",
+        ModelHash = "vw_prop_vw_casino_door_r_02a",
+        Coordinates = vector3(926.4083, 47.47442, 81.5419),
+        Locked = 0
+    },
+
+    -- Door set #2
+    -- Left door
+    ['casino_exterior_door2l'] = {
+        DoorHash = "casino_exterior_door2l",
+        ModelHash = "vw_prop_vw_casino_door_02a",
+        Coordinates = vector3(926.2393, 47.2141, 81.5419),
+        Locked = 0
+    },
+
+    -- Right door
+    ['casino_exterior_door2r'] = {
+        DoorHash = "casino_exterior_door2r",
+        ModelHash = "vw_prop_vw_casino_door_r_02a",
+        Coordinates = vector3(924.9089, 45.085, 81.5419),
+        Locked = 0
+    },
+
+    -- Door set #3
+    -- Left door
+    ['casino_exterior_door3l'] = {
+        DoorHash = "casino_exterior_door3l",
+        ModelHash = "vw_prop_vw_casino_door_02a",
+        Coordinates = vector3(924.75, 44.83086, 81.5419),
+        Locked = 0
+    },
+
+    -- Right door
+    ['casino_exterior_door3r'] = {
+        DoorHash = "casino_exterior_door3r",
+        ModelHash = "vw_prop_vw_casino_door_r_02a",
+        Coordinates = vector3(923.4196, 42.7017, 81.5419),
+        Locked = 0
+    },
+
+    -- Interior
     -- Elevator door #1 in management office
     -- These don't go anywhere so I locked them.
 

@@ -42,6 +42,7 @@ client_scripts {
 
     -- New menu test using menu instead of context menu
 
+    'client/menus/admin_menu.lua',
     'client/menus/camera_menu.lua',
     'client/menus/lobby_menu.lua',
     'client/menus/player_menu.lua',
@@ -54,7 +55,7 @@ client_scripts {
 
 
     -- Most menus are here.
-    'client/oxlib_test.lua',
+    'client/kc_menu.lua',
 }
 
 server_scripts {
@@ -62,4 +63,7 @@ server_scripts {
     'server/functions/doors.lua',
 
     'server/routing_buckets.lua',
+
+    -- New permission system from bMenu
+    'server/main.lua',
 }

@@ -169,7 +169,7 @@ function spawnPoint:nearby()
 
 
 		if IsControlJustPressed(0, 51) then
-			-- TriggerServerEvent('oxlib_test:server:setNoPopulation')
+			-- TriggerServerEvent('kc_menu:server:setNoPopulation')
 
 			-- Hmm this works, I could make a separate lobby menu just for the players.
 			-- One that needs them to go to a teleport location on the map instead of

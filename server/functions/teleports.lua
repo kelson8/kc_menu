@@ -18,8 +18,8 @@ end
 
 --#region Callbacks
 
-lib.callback.register('oxlib_test:server:saveTeleportLocation', function(source, teleportName)
-    local file = {string.strtrim(LoadResourceFile('oxlib_test', 'config/locations.lua'))}
+lib.callback.register('kc_menu:server:saveTeleportLocation', function(source, teleportName)
+    local file = {string.strtrim(LoadResourceFile('kc_menu', 'config/locations.lua'))}
 
     if file then
         file[1] = file[1]:gsub('}$', '')
@@ -48,7 +48,7 @@ lib.callback.register('oxlib_test:server:saveTeleportLocation', function(source,
 
         file[3] = '}'
 
-        SaveResourceFile('oxlib_test', 'config/locations.lua', table.concat(file), -1)
+        SaveResourceFile('kc_menu', 'config/locations.lua', table.concat(file), -1)
 
         return true, ('Successfully added location %s'):format(teleportName)
     end
@@ -56,11 +56,11 @@ lib.callback.register('oxlib_test:server:saveTeleportLocation', function(source,
     return false, 'Something went wrong with loading the locations file'
 end)
 
-lib.callback.register('oxlib_test:server:getConfig', function(_, fileName)
-    local file = LoadResourceFile('oxlib_test', ('config/%s.lua'):format(fileName))
+lib.callback.register('kc_menu:server:getConfig', function(_, fileName)
+    local file = LoadResourceFile('kc_menu', ('config/%s.lua'):format(fileName))
     if not file then return end
 
-    local returnVal = load(file, ('@@oxlib_test/config/%s.lua'):format(fileName))
+    local returnVal = load(file, ('@@kc_menu/config/%s.lua'):format(fileName))
     if not returnVal then return end
 
     return returnVal()

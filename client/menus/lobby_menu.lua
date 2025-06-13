@@ -1,20 +1,26 @@
--- Credit to BerkieBb on GitHub for some of these ideas for the teleports
+-- Credit to BerkieBb on GitHub for some of these ideas for the permissions
 
 local vehNetId = 0
-
---- TODO Move this somewhere else.
---- Check if a vehicle exists and a player is in one.
----@param vehicle any Vehicle to check
----@return boolean If the vehicle exists and the player is in a vehicle.
-local function DoesVehicleExist(vehicle)
-    if vehicle ~= 0 or vehicle ~= nil and IsPedInAnyVehicle(PlayerPedId(), false) then
-        return true
-    end
-
-    return false
-end
-
 function CreateLobbyMenu()
+    -- New
+    -- TODO Setup permissions for this, I need to figure out how to set this in the server
+    -- I got this working in admin_menu.lua
+    -- 
+    -- local perms = lib.callback.await('kc_menu:server:hasConvarPermission', false, 'Lobby', {'LobbyOptions'})
+
+    -- local menuOptions = {
+    --     {label = 'No access', description = 'You don\'t have access to any options, press enter to return', args = {'kcnet_menu'}}
+    -- }
+
+    -- local index = 1
+
+    -- if perms.LobbyOptions then
+    --     menuOptions[index] = {label = 'Lobby Options', args = {'lobby_menu'}}
+    --     index += 1
+    -- end
+
+    --
+
     lib.registerMenu({
         id = 'lobby_menu',
         title = 'Lobby List',
@@ -30,6 +36,10 @@ function CreateLobbyMenu()
         onCheck = function(selected, checked, args)
             -- print("Check: ", selected, checked, args)
         end,
+
+
+        -- TODO Setup this, new permission system
+        -- options = menuOptions
 
         options = {
             { label = 'Hub',           description = 'Set you to the hub lobby with other players',   args = { 'set_hub_lobby' } },
@@ -49,16 +59,16 @@ function CreateLobbyMenu()
         --
 
         if args[1] == 'set_hub_lobby' then
-            TriggerServerEvent('oxlib_test:server:setHub')
+            TriggerServerEvent('kc_menu:server:setHub')
 
             if vehNetId ~= nil or vehNetId ~= 0 then
-                TriggerServerEvent('oxlib_test:server:setVehicleLobby', vehNetId)
+                TriggerServerEvent('kc_menu:server:setVehicleLobby', vehNetId)
             end
         elseif args[1] == 'set_no_population_lobby' then
-            TriggerServerEvent('oxlib_test:server:setNoPopulation')
+            TriggerServerEvent('kc_menu:server:setNoPopulation')
 
             if vehNetId ~= nil or vehNetId ~= 0 then
-                TriggerServerEvent('oxlib_test:server:setVehicleNoPopulation', vehNetId)
+                TriggerServerEvent('kc_menu:server:setVehicleNoPopulation', vehNetId)
             end
         end
     end
@@ -70,6 +80,7 @@ end
 -- For use in marker test, I will be making the usage of lobby switching in the menu an admin feature.
 -- Players can go to a teleport location to switch between no population lobby and hub.
 -- I may even add a no pvp lobby and a pvp lobby, and disable god mode in vMenu for other players.
+-- TODO Refactor the vehicle part of this
 -----
 lib.registerContext({
     id = 'lobby_context_menu',
@@ -80,7 +91,19 @@ lib.registerContext({
             title = 'Hub',
             description = 'Set you to the hub lobby with other players',
             onSelect = function()
-                TriggerServerEvent('oxlib_test:server:setHub')
+                -- Extras
+                local player = PlayerPedId()
+                local currentVeh = GetVehiclePedIsIn(player, false)
+
+                if DoesVehicleExist(currentVeh) then
+                    vehNetId = NetworkGetNetworkIdFromEntity(currentVeh)
+                end
+                --
+                TriggerServerEvent('kc_menu:server:setHub')
+
+                if vehNetId ~= nil or vehNetId ~= 0 then
+                    TriggerServerEvent('kc_menu:server:setVehicleLobby', vehNetId)
+                end
             end
         },
 
@@ -88,7 +111,15 @@ lib.registerContext({
             title = 'No Population',
             description = 'Set you to the no vehicles and no peds lobby.',
             onSelect = function()
-                TriggerServerEvent('oxlib_test:server:setNoPopulation')
+                -- Extras
+                local player = PlayerPedId()
+                local currentVeh = GetVehiclePedIsIn(player, false)
+
+                if DoesVehicleExist(currentVeh) then
+                    vehNetId = NetworkGetNetworkIdFromEntity(currentVeh)
+                end
+                --
+                TriggerServerEvent('kc_menu:server:setNoPopulation')
             end
         },
     }
