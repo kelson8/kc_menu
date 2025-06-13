@@ -49,7 +49,7 @@ This is mostly just a test menu, but I will add admin features to it that most p
 * Enable busy spinner - Enable a test busy spinner on the screen.
 * Disable busy spinner - Disable a test busy spinner on the screen.
 
-### Links
+# Links
 Link to kc_util, this is required for my tests (I may remove this dependency later):
 * https://github.com/kelson8/fivem-scripts/tree/main/kc_util
 
@@ -61,7 +61,7 @@ Link to my other test projects:
 BerkieBb and bMenu on GitHub for some teleport functions:
 * https://github.com/BerkieBb/bMenu
 
-### License
+# License
 This project is Licensed under the GPLV3 license
 
 Anyone is welcome to use this code, please give credit if you do.
