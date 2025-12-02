@@ -7,6 +7,18 @@ There is also marker testing for this for teleporting between two points on the 
 
 ## Permissions
 
+Main menu
+* add_ace builtin.everyone kc_menu.Main.MainMenu.PlayerOptions allow
+* add_ace builtin.everyone kc_menu.Main.MainMenu.TeleportOptions allow
+* add_ace builtin.everyone kc_menu.Main.MainMenu.VehicleOptions allow
+* add_ace builtin.everyone kc_menu.Main.MainMenu.MusicOptions allow
+* add_ace builtin.everyone kc_menu.Main.MainMenu.CameraOptions allow
+* add_ace group.admin kc_menu.Main.MainMenu.LobbyMenu allow
+* add_ace group.admin kc_menu.Main.MainMenu.AdminMenu allow
+
+
+Admin menu
+
 Busy spinner test permissions
 * add_ace group.admin kc_menu.Admin.AdminOptions.EnableBusySpinner allow # Allow enabling the busy spinner
 * add_ace group.admin kc_menu.Admin.AdminOptions.DisableBusySpinner allow # Allow disabling the busy spinner
@@ -50,7 +62,7 @@ This is mostly just a test menu, but I will add admin features to it that most p
 * Disable busy spinner - Disable a test busy spinner on the screen.
 
 # Links
-Link to kc_util, this is required for my tests (I may remove this dependency later):
+Link to kc_util (This is an optional utility resource for some functions):
 * https://github.com/kelson8/fivem-scripts/tree/main/kc_util
 
 Link to my other test projects:

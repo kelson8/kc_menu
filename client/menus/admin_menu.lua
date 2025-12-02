@@ -5,9 +5,12 @@
 
 function CreateAdminMenu()
     -- New for permission setup, this seems to work
-    local perms = lib.callback.await('kc_menu:server:hasConvarPermission', false, {'Admin', 'AdminOptions'},
+    local perms = lib.callback.await('kc_menu:server:hasConvarPermission', false,
+    -- Ace permission group, so this is kc_menu:Admin.AdminOptions
+    {'Admin', 'AdminOptions'},
+    -- Permissions
     {'EnableBusySpinner',
-    'DisableBusySpinner'})
+    'DisableBusySpinner',})
 
     local menuOptions = {
         {label = 'No access', description = 'You don\'t have access to any options, press enter to return', args = {'kcnet_menu'}}

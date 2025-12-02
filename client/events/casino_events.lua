@@ -1,0 +1,54 @@
+-- -- Credit to DOJ Casino for some of this code:
+-- -- https://github.com/dojwun/doj-casino
+
+-- Config = {}
+
+-- -- Config.WheelPos = {x = 949.71, y = 45.1, z = 70.9, h =328.0}	-- Where the wheel prop will spawn OR where wheel prop is
+-- Config.WheelPos = {x = 2490.32, y = -264.0247, z = -59.9237, h = 0.0}	-- Where the wheel prop will spawn OR where wheel prop is
+-- Config.startingPrice = 5000
+
+-- -- local h
+-- -- local _wheel, _base, _lights1, _lights2, _arrow1, _arrow2 = nil, nil, nil, nil, nil, nil
+-- -- local _isRolling = false
+
+-- Citizen.CreateThread(function ()
+--     ClearArea(Config.WheelPos.x, Config.WheelPos.y, Config.WheelPos.z, 5.0, true, false, false, false)
+-- end)
+
+-- CreateThread(function()
+-- 	lib.requestAudioBank("DLC_VINEWOOD\\CASINO_GENERAL")
+-- 	local model1 = GetHashKey('vw_prop_vw_luckywheel_02a')
+-- 	local model2 = GetHashKey('vw_prop_vw_luckywheel_01a')
+-- 	local m1a = GetHashKey('vw_prop_vw_luckylight_off')
+-- 	local m1b = GetHashKey('vw_prop_vw_luckylight_on')
+-- 	local m2a = GetHashKey('vw_prop_vw_jackpot_off')
+-- 	local m2b = GetHashKey('vw_prop_vw_jackpot_on')
+-- 	lib.RequestModel(model1)
+-- 	lib.RequestModel(model2)
+-- 	lib.RequestModel(m1a)
+-- 	lib.RequestModel(m1b)
+-- 	lib.RequestModel(m2a)
+-- 	lib.RequestModel(m2b)
+-- 	ClearArea(Config.WheelPos.x, Config.WheelPos.y, Config.WheelPos.z, 5.0, true, false, false, false)
+-- 	_wheel = CreateObject(model1, Config.WheelPos.x, Config.WheelPos.y, Config.WheelPos.z, false, false, true)
+-- 	SetEntityHeading(_wheel, Config.WheelPos.h)
+-- 	SetModelAsNoLongerNeeded(model1)
+-- 	_base = CreateObject(model2, Config.WheelPos.x, Config.WheelPos.y, Config.WheelPos.z-0.26, false, false, true)
+-- 	SetEntityHeading(_base, Config.WheelPos.h)
+-- 	SetModelAsNoLongerNeeded(_base)
+-- 	_lights1 = CreateObject(m1a, Config.WheelPos.x, Config.WheelPos.y, Config.WheelPos.z+0.35, false, false, true)
+-- 	SetEntityHeading(_lights1, Config.WheelPos.h)
+-- 	SetModelAsNoLongerNeeded(_lights1)
+-- 	_lights2 = CreateObject(m1b, Config.WheelPos.x, Config.WheelPos.y, Config.WheelPos.z+0.35, false, false, true)
+-- 	SetEntityVisible(_lights2, false, 0)
+-- 	SetEntityHeading(_lights2, Config.WheelPos.h)
+-- 	SetModelAsNoLongerNeeded(_lights2)
+-- 	_arrow1 = CreateObject(m2a, Config.WheelPos.x, Config.WheelPos.y, Config.WheelPos.z+2.5, false, false, true)
+-- 	SetEntityHeading(_arrow1, Config.WheelPos.h)
+-- 	SetModelAsNoLongerNeeded(_arrow1)
+-- 	_arrow2 = CreateObject(m2b, Config.WheelPos.x, Config.WheelPos.y, Config.WheelPos.z+2.5, false, false, true)
+-- 	SetEntityVisible(_arrow2, false, 0)
+-- 	SetEntityHeading(_arrow2, Config.WheelPos.h)
+-- 	SetModelAsNoLongerNeeded(_arrow2)
+-- 	h = GetEntityRotation(_wheel)
+-- end)

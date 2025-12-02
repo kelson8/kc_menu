@@ -2,9 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
 
--- This requires my ox_lib for testing.
--- In the future, this will also require kc_util from here: 
--- https://github.com/kelson8/fivem-scripts/tree/main/kc_util
+-- This requires ox_lib for testing.
 dependencies {'ox_lib'}
 
 shared_scripts {
@@ -34,6 +32,9 @@ client_scripts {
 
     -- New tests
 
+    -- Events
+    'client/events/casino_events.lua',
+
     -- Markers
     'client/test/marker_test.lua',
 
@@ -51,7 +52,9 @@ client_scripts {
 
     'client/menus/vehicle_menu.lua',
 
+    -- TODO Rename this file to main_menu
     'client/menus/new_menu.lua',
+    -- 'client/menus/main_menu.lua',
 
 
     -- Most menus are here.
@@ -59,9 +62,11 @@ client_scripts {
 }
 
 server_scripts {
+    'server/functions/players.lua',
     'server/functions/teleports.lua',
     'server/functions/doors.lua',
 
+    'server/commands.lua',
     'server/routing_buckets.lua',
 
     -- New permission system from bMenu

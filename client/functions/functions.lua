@@ -15,8 +15,6 @@ Teleports = {}
 --- Teleport functions
 ------------
 
--- TODO Move these into kc_util and make these resources depend on it.
-
 -- Taken from functions.lua in kc_menu
 --- This now teleports the players vehicle if they are in one.
 --- https://forum.cfx.re/t/esx-want-to-teleport-player-with-his-vehicle/4880346
@@ -218,7 +216,7 @@ function Vehicle.UpgradeMax()
         ToggleVehicleMod(currentVeh, eVehicleModType.VMT_TURBO, true)
         SetVehicleTyresCanBurst(currentVeh, false)
 
-        exports.kc_util:Notify("Current vehicle ~b~upgraded~w~!")
+        -- exports.kc_util:Notify("Current vehicle ~b~upgraded~w~!")
         lib.notify(
             {
                 title = "Current vehicle upgraded!",

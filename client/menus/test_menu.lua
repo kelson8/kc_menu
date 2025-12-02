@@ -35,7 +35,7 @@ lib.registerContext({
             end
         },
 
-        -- 
+        --
         {
             -- Play an animation
             -- This seems to work
@@ -44,10 +44,25 @@ lib.registerContext({
             onSelect = function()
                 local player = GetPlayerPed(-1)
                 -- lib.playAnim(player, "random@arrests@busted","enter", 2.0, -2.0,-1 ,49, 0, true, false, true)
-                lib.playAnim(player, "random@arrests@busted","enter", 8.0, -2.0, 2000, 49, 0, true, false, true)
-
+                lib.playAnim(player, "random@arrests@busted", "enter", 8.0, -2.0, 2000, 49, 0, true, false, true)
             end
-        }
+        },
+
+        {
+            -- Works as a basic alert pop up:
+            -- https://coxdocs.dev/ox_lib/Modules/Interface/Client/alert
+            title = 'Test alert',
+            onSelect = function()
+                local alert = lib.alertDialog({
+                    header = 'Alert',
+                    content = 'Alert test\nMarkdown support.',
+                    centered = true,
+                    cancel = true,
+                })
+                print(alert)
+            end
+        },
+
 
         -- {
         --     title = 'Airport',

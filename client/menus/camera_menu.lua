@@ -33,8 +33,14 @@ function CreateCameraMenu()
             -- print("Check: ", selected, checked, args)
         end,
 
+        -- TODO Setup debug display for these.
         options = {
             { label = 'First Person cam', description = 'Print if first person camera is enabled in the console.', args = { 'first_person_cam' } },
+
+            -- TODO Make this go from 0-3 if possible, I don't think this works right
+            { label = 'Aim controls', values = {'Assisted Aim (Full)', 'Assisted Aim (Partial)', 'Free Aim - Assisted', 'Free Aim'},
+            defaultIndex = 0,
+            description = 'Change aiming mode.', args = { 'change_aim_mode' } },
 
         }
 
@@ -54,6 +60,12 @@ function CreateCameraMenu()
                     description = "First person cam inactive"
                 })
             end
+
+        -- TODO Make this start at 0 if possible
+        elseif args[1] == 'change_aim_mode' then
+            SetPlayerTargetingMode(scrollIndex)
         end
+
+
     end)
 end
