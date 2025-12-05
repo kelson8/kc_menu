@@ -20,12 +20,17 @@ client_scripts {
     'client/test/marker_locations.lua',
 
     'client/enums.lua',
+
     -- Functions
 
     'client/functions/clothes.lua',
     'client/functions/doors.lua',
     'client/functions/functions.lua',
     'client/functions/menu.lua',
+
+    -- New split function files
+    'client/functions/vehicle_functions.lua',
+
 
     'client/commands/test_commands.lua',
     'client/oxlib_command_test.lua',
